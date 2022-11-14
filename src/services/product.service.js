@@ -2,12 +2,13 @@ const productModel = require('../models/product.model');
 
 const getAllProducts = async () => {
   const products = await productModel.selectAll();
-  return products;
+  return { type: null, message: products };
 };
 
-const getProductById = async (id) => {
-  const product = await productModel.selectById(id);
-  return product;
+const getProductById = async (productId) => {
+  const product = await productModel.selectById(productId);
+  if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  return { type: null, message: product };
 };
 
 module.exports = {
