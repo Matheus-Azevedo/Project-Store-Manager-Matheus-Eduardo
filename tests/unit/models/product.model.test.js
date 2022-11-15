@@ -32,4 +32,13 @@ describe('Testes unitários do model de produtos', function () {
     // Assert
     expect(result).to.be.deep.equal(product);
   });
+
+  it('Deve inserir um produto', async function () {
+    // Arrange
+    sinon.stub(connection, 'execute').resolves([[product]]);
+    // Act
+    const result = await productModel.insert('Teste');
+    // Assert
+    expect(result).to.be.deep.equal(product);
+  });
 });

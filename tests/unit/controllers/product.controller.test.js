@@ -10,7 +10,7 @@ const productService = require("../../../src/services/product.service");
 const productController = require("../../../src/controllers/product.controller");
 
 // Mocks
-const { products, product } = require("../models/mocks/product.model.mock");
+const { products, product, newProduct } = require("../models/mocks/product.model.mock");
 
 describe('Testes unitários do controller de produtos', () => {
   afterEach(sinon.restore);
@@ -78,6 +78,38 @@ describe('Testes unitários do controller de produtos', () => {
     await productController.getAllProducts(req, res);
     // Assert
     expect(res.status).to.be.calledOnceWith(404);
+    expect(res.json).to.be.calledWith(expected);
+  });
+
+  it('Deve retonar response 201 e o produto criado', async () => {
+    // Arrange
+    const expected = newProduct;
+    const req = { body: newProduct };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon.stub(productService, 'createProduct').resolves({ type: null, message: newProduct });
+    // Act
+    await productController.createProduct(req, res);
+    // Assert
+    expect(res.status).to.be.calledOnceWith(201);
+    expect(res.json).to.be.calledWith(expected);
+  });
+
+  it('Deve retornar response 422 e uma mensagem de produto inválido', async () => {
+    // Arrange
+    const expected = { message: 'Invalid product name' };
+    const req = { body: {} };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon
+      .stub(productService, "createProduct")
+      .resolves({ type: "INVALID_VALUE", message: "Invalid product name" });
+    // Act
+    await productController.createProduct(req, res);
+    // Assert
+    expect(res.status).to.be.calledOnceWith(422);
     expect(res.json).to.be.calledWith(expected);
   });
 });

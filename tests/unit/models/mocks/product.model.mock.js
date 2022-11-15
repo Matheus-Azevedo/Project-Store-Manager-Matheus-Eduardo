@@ -18,7 +18,13 @@ const product = {
     name: "Martelo de Thor",
 };
 
+const newProduct = {
+  id: 4,
+  name: "Capa de invisibilidade",
+};
+
 module.exports = {
   products,
-  product
+  product,
+  newProduct,
 };

@@ -22,7 +22,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-11-15T10:06:52.230Z",
-    "modified": "2022-11-15T11:01:01.663Z",
+    "modified": "2022-11-15T16:54:33.206Z",
     "headers": [
       {
         "name": "User-Agent",
@@ -33,7 +33,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "raw": "{\n  \"name\": \"\"\n}",
       "form": []
     },
     "tests": []

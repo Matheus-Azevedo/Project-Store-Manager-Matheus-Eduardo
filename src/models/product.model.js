@@ -18,7 +18,6 @@ const insert = async (productName) => {
   const [results] = await connection.execute(
     'INSERT INTO StoreManager.products (name) VALUES (?)', [productName],
   );
-  console.log('model aqui', results);
   return { id: results.insertId, name: productName };
 };
 
