@@ -4,13 +4,38 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products",
-    "url": "localhost:3000/products/999",
+    "url": "localhost:3000/products",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-13T01:16:23.295Z",
-    "modified": "2022-11-14T17:57:54.052Z",
+    "modified": "2022-11-15T10:34:51.811Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e070bc3e-737e-40d2-8671-1879a1c100e0",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products",
+    "url": "localhost:3000/products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-15T10:06:52.230Z",
+    "modified": "2022-11-15T11:01:01.663Z",
+    "headers": [
+      {
+        "name": "User-Agent",
+        "value": "Thunder Client (https://www.thunderclient.com)",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]
