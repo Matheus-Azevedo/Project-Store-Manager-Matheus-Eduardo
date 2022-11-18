@@ -34,6 +34,8 @@ describe('Testes unitários do model de produtos', function () {
   });
 
   it('Deve inserir um produto', async function () {
+    //arrange
+    sinon.stub(connection, 'execute').resolves([{ insertId: 4 }]);
     // Act
     const result = await productModel.insert(newProduct.name);
     // Assert

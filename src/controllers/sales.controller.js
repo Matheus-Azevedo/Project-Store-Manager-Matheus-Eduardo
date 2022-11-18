@@ -6,7 +6,6 @@ const salesService = require('../services/sales.service');
 const STATUS_CREATED = 201;
 
 const createSale = async (req, res) => {
-  console.log('controller', req.body);
   const itensSold = req.body;
   const { type, message } = await salesService.createSale(itensSold);
   if (type) return res.status(errors.findError(type)).json({ message });
