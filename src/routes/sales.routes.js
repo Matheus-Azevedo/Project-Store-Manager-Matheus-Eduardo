@@ -9,6 +9,10 @@ const {
 
 const salesRouter = express.Router();
 
+// GET /sales - Returns all sales
+salesRouter.get('/', salesController.getAllSales);
+// GET /sales/:id - Returns a sale by id
+salesRouter.get('/:id', salesController.getSaleById);
 // POST /sales  -  Create a new sale
 salesRouter.post('/',
   productIdIsRequired,
