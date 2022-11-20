@@ -20,5 +20,7 @@ salesRouter.post('/',
   quantityIsRequired,
   itensSoldMustBeInDatabase,
   salesController.createSale);
+// DELETE /sales/:id - Delete a sale by id
+salesRouter.delete('/:id', salesController.deleteSaleById);
 
 module.exports = salesRouter;

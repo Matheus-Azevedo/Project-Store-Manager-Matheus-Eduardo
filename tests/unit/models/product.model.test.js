@@ -10,7 +10,7 @@ const connection = require('../../../src/models/db/connection');
 const productModel = require('../../../src/models/product.model');
 
 // Mocks
-const { products, product, newProduct } = require('./mocks/product.model.mock');
+const { products, product, newProduct, productUpdated } = require('./mocks/product.model.mock');
 
 describe('Testes unitários do model de produtos', function () {
   afterEach(sinon.restore);
@@ -44,10 +44,10 @@ describe('Testes unitários do model de produtos', function () {
 
   it('Deve atualizar um produto', async function () {
     // Arrange
-    sinon.stub(connection, 'execute').resolves();
+    const newName = 'Capa de do Doutor Estranho';
     // Act
-    const result = await productModel.update(1, newProduct.name);
+    const result = await productModel.update(1, newName);
     // Assert
-    expect(result).to.be.deep.equal(newProduct);
+    expect(result).to.be.deep.equal({ id: 1, name: newName });
   });
 });

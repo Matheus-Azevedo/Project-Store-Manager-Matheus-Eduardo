@@ -5,6 +5,7 @@ const salesService = require('../services/sales.service');
 // Constants
 const STATUS_CREATED = 201;
 const STATUS_OK = 200;
+const STATUS_DELETED = 204;
 
 const getAllSales = async (_req, res) => {
   const { message } = await salesService.getAllSales();
@@ -24,8 +25,15 @@ const createSale = async (req, res) => {
   return res.status(STATUS_CREATED).json(message);
 };
 
+const deleteSaleById = async (req, res) => {
+  const { type, message } = await salesService.deleteSaleById(req.params.id);
+  if (type) return res.status(errors.findError(type)).json({ message });
+  return res.status(STATUS_DELETED).json();
+};
+
 module.exports = {
   getAllSales,
   getSaleById,
   createSale,
+  deleteSaleById,
 };

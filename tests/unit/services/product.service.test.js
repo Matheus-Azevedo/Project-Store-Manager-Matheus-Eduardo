@@ -69,4 +69,25 @@ describe('Testes unitários do serviço de produtos', function () {
     // Assert
     expect(result).to.be.deep.equal({ type: null, message: expected });
   });
+
+  it('Deve deletar um produto', async function () {
+    // Arrange
+    const id = 1;
+    sinon.stub(productModel, 'remove').resolves();
+    // Act
+    const result = await productService.deleteProduct(id);
+    // Assert
+    expect(result).to.be.deep.equal({ type: null, message: 'Product deleted' });
+  });
+
+  it('Deve retornar um erro ao tentar deletar um produto com id inexistente', async function () {
+    // Arrange
+    const id = 999;
+    const expected = { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+    sinon.stub(productModel, 'remove').resolves(null);
+    // Act
+    const result = await productService.deleteProduct(id);
+    // Assert
+    expect(result).to.be.deep.equal(expected);
+  });
 });

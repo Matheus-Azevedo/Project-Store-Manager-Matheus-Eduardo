@@ -128,5 +128,19 @@ describe('Testes unitários do controller de produtos', () => {
     expect(res.status).to.be.calledOnceWith(200);
     expect(res.json).to.be.calledWith(expected);
   });
-  
+
+  it('Deve retornar response 204 e e não retornar nenhuma resposta', async () => {
+    // Arrange
+    const id = 1;
+    const req = { params: { id } };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon.stub(productService, 'deleteProduct').resolves({ type: null, message: null });
+    // Act
+    await productController.deleteProduct(req, res);
+    // Assert
+    expect(res.status).to.be.calledOnceWith(204);
+    expect(res.json).to.be.calledWith();
+  });
 });
