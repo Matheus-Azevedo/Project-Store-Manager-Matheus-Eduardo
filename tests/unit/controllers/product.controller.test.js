@@ -128,4 +128,5 @@ describe('Testes unitários do controller de produtos', () => {
     expect(res.status).to.be.calledOnceWith(200);
     expect(res.json).to.be.calledWith(expected);
   });
+  
 });

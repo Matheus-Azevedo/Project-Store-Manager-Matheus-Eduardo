@@ -23,5 +23,7 @@ productRouter.put('/:id',
   nameCanNotBeEmpty,
   nameCanNotBeLessThanFivCharacters,
   productController.updateProduct);
+// DELETE /products/:id  -  Delete an product by id
+productRouter.delete('/:id', productController.deleteProduct);
 
 module.exports = productRouter;
