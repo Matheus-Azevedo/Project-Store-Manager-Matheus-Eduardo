@@ -25,6 +25,14 @@ const createSale = async (req, res) => {
   return res.status(STATUS_CREATED).json(message);
 };
 
+const updateSaleById = async (req, res) => {
+  const { id } = req.params;
+  const itensSold = req.body;
+  const { type, message } = await salesService.updateSaleById(id, itensSold);
+  if (type) return res.status(errors.findError(type)).json({ message });
+  return res.status(STATUS_OK).json(message);
+};
+
 const deleteSaleById = async (req, res) => {
   const { type, message } = await salesService.deleteSaleById(req.params.id);
   if (type) return res.status(errors.findError(type)).json({ message });
@@ -35,5 +43,6 @@ module.exports = {
   getAllSales,
   getSaleById,
   createSale,
+  updateSaleById,
   deleteSaleById,
 };

@@ -20,6 +20,13 @@ salesRouter.post('/',
   quantityIsRequired,
   itensSoldMustBeInDatabase,
   salesController.createSale);
+// PUT /sales/:id - Update a sale by id
+salesRouter.put('/:id',
+  productIdIsRequired,
+  quantityIsGreaterThanZero,
+  quantityIsRequired,
+  itensSoldMustBeInDatabase,
+  salesController.updateSaleById);
 // DELETE /sales/:id - Delete a sale by id
 salesRouter.delete('/:id', salesController.deleteSaleById);
 
