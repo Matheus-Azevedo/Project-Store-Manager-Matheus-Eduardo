@@ -112,4 +112,20 @@ describe('Testes unitários do controller de produtos', () => {
     expect(res.status).to.be.calledOnceWith(422);
     expect(res.json).to.be.calledWith(expected);
   });
+
+  it('Deve retornar response 200 e o produto atualizado', async () => {
+    // Arrange
+    const id = 1;
+    const expected = product;
+    const req = { params: { id }, body: product.name };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon.stub(productService, 'updateProduct').resolves({ type: null, message: product });
+    // Act
+    await productController.updateProduct(req, res);
+    // Assert
+    expect(res.status).to.be.calledOnceWith(200);
+    expect(res.json).to.be.calledWith(expected);
+  });
 });

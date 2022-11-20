@@ -41,4 +41,13 @@ describe('Testes unitários do model de produtos', function () {
     // Assert
     expect(result).to.be.deep.equal(newProduct);
   });
+
+  it('Deve atualizar um produto', async function () {
+    // Arrange
+    sinon.stub(connection, 'execute').resolves();
+    // Act
+    const result = await productModel.update(1, newProduct.name);
+    // Assert
+    expect(result).to.be.deep.equal(newProduct);
+  });
 });

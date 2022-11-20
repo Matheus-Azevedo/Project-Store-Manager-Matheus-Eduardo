@@ -57,4 +57,16 @@ describe('Testes unitários do serviço de produtos', function () {
     // Assert
     expect(result).to.be.deep.equal({ type: null, message: expected });
   });
+
+  it('Deve retornar um produto atualizado', async function () {
+    // Arrange
+    const id = 1;
+    const name = 'Teste';
+    const expected = product;
+    sinon.stub(productModel, 'update').resolves(expected);
+    // Act
+    const result = await productService.updateProduct(id, name);
+    // Assert
+    expect(result).to.be.deep.equal({ type: null, message: expected });
+  });
 });
