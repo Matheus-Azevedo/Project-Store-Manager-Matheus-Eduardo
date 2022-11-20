@@ -18,5 +18,10 @@ productRouter.post('/',
   nameCanNotBeEmpty,
   nameCanNotBeLessThanFivCharacters,
   productController.createProduct);
+// PUT /products/:id  -  Update an product by id
+productRouter.put('/:id',
+  nameCanNotBeEmpty,
+  nameCanNotBeLessThanFivCharacters,
+  productController.updateProduct);
 
 module.exports = productRouter;
