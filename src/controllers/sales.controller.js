@@ -7,10 +7,7 @@ const STATUS_CREATED = 201;
 const STATUS_OK = 200;
 
 const getAllSales = async (_req, res) => {
-  const { type, message } = await salesService.getAllSales();
-  if (type) {
-    return res.status(errors.findError(type).status).json({ message });
-  }
+  const { message } = await salesService.getAllSales();
   return res.status(STATUS_OK).json(message);
 };
 
