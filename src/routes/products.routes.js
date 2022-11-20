@@ -9,6 +9,8 @@ const {
 // Router instance
 const productRouter = express.Router();
 
+// GET /products/search?q=:name
+productRouter.get('/search', productController.searchProduct);
 // GET /products  -  Return an list of all products
 productRouter.get('/', productController.getAllProducts);
 // GET /products/:id  -  Return an product by id
