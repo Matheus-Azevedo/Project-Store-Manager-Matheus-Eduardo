@@ -82,4 +82,25 @@ describe('Testes unitários do cotroller de sales', () => {
     expect(status).to.have.been.calledWith(404);
     expect(json).to.have.been.calledWith({ message: expected });
   });
+
+  it('Deve retornar status 200 e a venda atualizada', async function () {
+    // Arrange
+    const itensSold = salesRequestMock;
+    const expected = {
+      id: 1,
+      itemsSold: salesRequestMock,
+    };
+    const req = { body: itensSold, params: { id: 1 } };
+    const res = {};
+    const status = sinon.stub().returns(res);
+    const json = sinon.stub().returns(res);
+    res.status = status;
+    res.json = json;
+    sinon.stub(salesService, 'updateSaleById').resolves({ type: null, message: expected });
+    // Act
+    await salesController.updateSaleById(req, res);
+    // Assert
+    expect(status).to.have.been.calledWith(200);
+    expect(json).to.have.been.calledWith(expected);
+  });
 });

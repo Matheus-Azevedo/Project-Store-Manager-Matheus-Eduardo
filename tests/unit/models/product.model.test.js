@@ -50,4 +50,13 @@ describe('Testes unitários do model de produtos', function () {
     // Assert
     expect(result).to.be.deep.equal({ id: 1, name: newName });
   });
+
+  it('Deve retonar um produto pelo nome', async function () {
+    // Arrange
+    sinon.stub(connection, 'execute').resolves([product]);
+    // Act
+    const result = await productModel.selectByName(product.name);
+    // Assert
+    expect(result).to.be.deep.equal(product);
+  });
 });

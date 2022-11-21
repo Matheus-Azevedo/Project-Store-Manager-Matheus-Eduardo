@@ -10,7 +10,7 @@ const salesModel = require("../../../src/models/sales.model");
 const salesService = require("../../../src/services/sales.service");
 
 // Mocks
-const { salesRequestMock, salesResponseExpectedMock, allSalesMock } = require("../../unit/models/mocks/sales.model.mock");
+const { salesRequestMock, salesResponseExpectedMock, allSalesMock, saleByIdOneMock, salesUpdateMock } = require("../../unit/models/mocks/sales.model.mock");
 
 describe("Testes unitários do serviço de vendas", function () {
   afterEach(sinon.restore);
@@ -54,6 +54,29 @@ describe("Testes unitários do serviço de vendas", function () {
     const result = await salesService.getSaleById(saleId);
     // Assert
     expect(result).to.be.deep.equal(expected);
+  });
+
+  it('Deve deletar uma venda pelo id', async function () {
+    // Arrange
+    const saleId = 1;
+    sinon.stub(salesModel, 'removeSales').resolves();
+    sinon.stub(salesModel, 'removeSalesProducts').resolves();
+    // Act
+    const result = await salesService.deleteSaleById(saleId);
+    // Assert
+    expect(result).to.be.deep.equal({ type: null, message: "Sale deleted successfully" });
+  });
+
+  it('Deve fazer o update de uma venda pelo id', async function () {
+    // Arrange
+    const saleId = 1;
+    const itensSold = salesRequestMock;
+    sinon.stub(salesModel, 'removeSalesProducts').resolves();
+    sinon.stub(salesModel, 'insertSalesProducts').resolves();
+    // Act
+    const result = await salesService.updateSaleById(saleId, itensSold);
+    // Assert
+    expect(result).to.be.deep.equal({ type: null, message: salesUpdateMock });
   });
 });
 

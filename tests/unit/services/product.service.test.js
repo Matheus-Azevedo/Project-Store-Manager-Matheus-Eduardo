@@ -90,4 +90,15 @@ describe('Testes unitários do serviço de produtos', function () {
     // Assert
     expect(result).to.be.deep.equal(expected);
   });
+
+  it('deve encontrar um produto pelo nome', async function () {
+    // Arrange
+    const name = product.name;
+    const expected = product;
+    sinon.stub(productModel, 'selectByName').resolves(expected);
+    // Act
+    const result = await productService.searchProduct(name);
+    // Assert
+    expect(result).to.be.deep.equal({ type: null, message: expected });
+  });
 });
